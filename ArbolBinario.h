@@ -108,16 +108,17 @@ template <class T> void ArbolBinario<T>::put(T dato) {
     root= put(dato,root);
 }
 
-template <class T> NodoArbol<T> *ArbolBinario<T>::put(T dato, NodoArbol<T> *r) {
+template <class T>
+NodoArbol<T>* ArbolBinario<T>::put(T dato, NodoArbol<T>* r) {
     if (r == nullptr) {
         return new NodoArbol<T>(dato);
     }
 
-    if (r->getData() == dato) {
-        throw 200;
+    if (dato == r->getData()) {
+        throw 200; // Puedes manejar esta excepción de la forma que desees
     }
 
-    if (r->getData() > dato) {
+    if (dato < r->getData()) {
         r->setLeft(put(dato, r->getLeft()));
     } else {
         r->setRight(put(dato, r->getRight()));
@@ -125,6 +126,8 @@ template <class T> NodoArbol<T> *ArbolBinario<T>::put(T dato, NodoArbol<T> *r) {
 
     return r;
 }
+
+
 /**
  * Elimina un dato del árbol
  * @param clave Clave para identificar el nodo a borrar

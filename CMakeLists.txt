@@ -11,4 +11,5 @@ add_executable(Parcial2ProgramacionIII
         Articulo.h
         NodoArbol.h
         ArbolBinario.h
+        Lista.h
 )
