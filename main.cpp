@@ -15,47 +15,33 @@ using namespace std;
 
 
 int main() {
-    // Lista<ArbolBinario<Articulo>> grupos;
-    ArbolBinario<Articulo> amoblamientos;
-    ArbolBinario<Articulo> anafesOrmay;
-    ArbolBinario<Articulo> campanasFranke;
-    ArbolBinario<Articulo> campanasTST;
-    ArbolBinario<Articulo> fixSystem;
-    ArbolBinario<Articulo> griferiasVarias;
-    ArbolBinario<Articulo> hornosOrmay;
-    ArbolBinario<Articulo> mueblesAccesorios;
-    ArbolBinario<Articulo> piletasCeramica;
-    ArbolBinario<Articulo> piletasDaccord;
-    ArbolBinario<Articulo> piletasFerrum;
-    ArbolBinario<Articulo> piletasJohnson;
-    ArbolBinario<Articulo> piletasMiPileta;
-    ArbolBinario<Articulo> piletasPringles;
-    ArbolBinario<Articulo> piletasVidrioColori;
-    ArbolBinario<Articulo> termotanquesOrmay;
-    ArbolBinario<Articulo> turboar;
     ifstream archivo(inventario);    //definimos el archivo que vamor a abrir (dandole el nombre)
-    string linea;                     //para ir guardando cada linea e ir parseando
-
-    Lista<string> grupos;
-
-    string nombresGrupos[18] = {"amoblamientos", "anafesOrmay", "campanasFranke", "campanasTST", "fixSystem",
-                                "griferiasVarias", "hornosOrmay", "mueblesAccesorios",
-                                "piletasCeramicas", "piletasDaccord", "piletasFerrum", "piletasJohnson",
-                                "piletasMiPileta", "piletasPringles", "piletasVidrioColori", "termotanquesOrmay",
-                                "turboar"};
+    string linea;
 
     char delimitador = ',';
 
     getline(archivo, linea);    //leemos la primer linea para descartarla pues es el encabezado
+    int i = linea.length(), dep, cont = 0;
 
-    string cabezaGrupo;
+    for (int j = 0; j < i; ++j) {
+        if (linea[j] == ',') {
+            cont++;
+        }
+    }
+    dep = cont - 2;     //Le restamos las comas que correspones a los datos q no son depositos
+
+    ArbolBinario<Articulo> depositos[dep];     //Creamos un arreglo de tipo arbol de tipo articulo con cantidad de depositos como tamaño
+
+    cout << "Numero de depositos es: " << dep << endl;
+
     //Leemos todas las lineas
+    string cabezaGrupo;
     while (getline(archivo, linea)) {
         stringstream stream(linea);   //convertimos la cadena a stream
-        string grupo, grupoguardar, codigoBarras, articulo, depositox;
+        string grupo, grupoguardar, codigoBarras, articulo, stockDeposito;
+        int stockTotal;
 
         getline(stream, grupo, delimitador);   //Leemos grupo
-
         if (!grupo.empty()) {            //si el grupo es vacio entonces el grupo es el primer elemento de la lista
             cabezaGrupo = grupo;
             grupoguardar = cabezaGrupo;
@@ -63,104 +49,32 @@ int main() {
             grupoguardar = cabezaGrupo;
         }
 
-        /*
-    int i=0;
-    switch(i) {
-        case 0: {
-            Articulo articulo1;
-            articulo1.setarticulo(articulo);
-            articulo1.setcodigoDeBarras(codigoBarras);
-            articulo1.setgrupo(grupo);
-            char caracter;
-            int cantDepositos=0;
-            while (stream.get(caracter)) {
-                Lista<int> depositos;
-                if(caracter!='\n') {
-                    int num;
-                    getline(stream, depositox, delimitador);
-                    if (depositox.empty()) {
-                        depositos.insertarUltimo(0);
-                    }else {
-                        num = stoi(depositox);
-                        depositos.insertarUltimo(num);
-                    }
-                }
-                cantDepositos++;
-            }
-            amoblamientos.put(articulo1);
-            break;
-        }
-        case 1: {
-            Articulo articulo2;
-            articulo2.setarticulo(articulo);
-            articulo2.setcodigoDeBarras(codigoBarras);
-            articulo2.setgrupo(grupo);
-        }
-        i++;
-    }*/
-
         getline(stream, codigoBarras, delimitador);     //Leemos codigo de barras
 
         getline(stream, articulo, delimitador);         //Leemos nombre del articulo
 
-        Lista<int> depositos;
-        char caracter;
-        int cantDepositos = 0;
-        while (getline(stream, depositox, delimitador)) {
-            int num = 0;
-            if (!depositox.empty()) {
-                num = stoi(depositox);
+        Articulo articulox(grupoguardar,codigoBarras,articulo);
+
+        for (int j = 0; j < dep; ++j) {
+            int num;
+            getline(stream, stockDeposito, delimitador);
+            if (!stockDeposito.empty()) {      //Si NO esta vacio, se suma al stock total.
+                num = stoi(stockDeposito);
+                stockTotal=+num;
+                articulox.setDeposito(num);
+            } else {
+                articulox.setDeposito(0);
             }
-            depositos.insertarUltimo(num);
+            depositos[j].put(articulox);
         }
-        /*
-        while (stream.get(caracter)) {
-            if (caracter != '\n') {
-                int num;
-                getline(stream, depositox, delimitador);
-                if (depositox.empty()) {
-                    depositos.insertarUltimo(0);
-                } else {
-                    num = stoi(depositox);
-                    depositos.insertarUltimo(num);
-                }
-                cantDepositos++;
-            }
-        }*/
-        //articulo(codigoBarras, articulo);
+        articulox.setStock(stockTotal);
+    }
 
-        //imprimimos PRUEBA
-
-        cout << "====================" << endl;
-        cout << "grupo: " << grupoguardar<< endl;
-        cout << "Codigo de barras: " << codigoBarras << endl;
-        cout << "Articulo: " << articulo << endl;
-        cout << "Depositos: ";
-        for (int i = 0; i < depositos.getTamanio(); ++i) {
-            cout << depositos.getDato(i) << " ";
-        }
-        cout << endl;
-
-        /*
-        for (int i = 0; i < cantDepositos; i++) {
-            cout << "Deposito " << i + 1 << " :" << depositos.getDato(i) << endl;
-        }*/
+    for (int j = 0; j < dep; ++j) {
+        cout << "Deposito " << j+1 << endl;
+        depositos[j].print();
     }
     archivo.close();
-    cout << "Lista de Grupos:" << endl;
-    for (int i = 0; i < grupos.getTamanio(); ++i) {
-        cout << grupos.getDato(i) << endl;
-    }
 
-    /*
-    char articulo[40];
-    fflush(stdin);
-    cout<<"Ingresar nombre del articulo"<<endl;
-    cin.getline(articulo, 40, '\n');
-    cout<<articulo;
-    */
-
-
-    //grupos.insertarPrimero(amoblamientos.put(codigoBarras));
 
 }

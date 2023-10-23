@@ -5,34 +5,45 @@
 #include "Articulo.h"
 #include <iostream>
 
-void Articulo::setgrupo(string _grupo) {
+void Articulo::setGrupo(string _grupo) {
     grupo = _grupo;
 }
 
-void Articulo::setcodigoDeBarras(string _codigoDeBarras) {
+void Articulo::setCodigoDeBarras(string _codigoDeBarras) {
     codigoDeBarras=_codigoDeBarras;
 }
 
-void Articulo::setarticulo(string _articulo) {
+void Articulo::setArticulo(string _articulo) {
     articulo=_articulo;
 }
 
-void Articulo::setnumeroArticulo(int _numeroArticulo) {
-    numeroArticulo=_numeroArticulo;
-}
 
-
-string Articulo::getgrupo() {
+string Articulo::getGrupo() {
     return grupo;
 }
 
-string Articulo::getcodigoDeBarras() {
+string Articulo::getCodigoDeBarras() {
     return codigoDeBarras;
 }
 
-string Articulo::getarticulo() {
+string Articulo::getArticulo() {
     return articulo;
 }
-int Articulo::getnumeroArticulo() {
-    return numeroArticulo;
+
+void Articulo::setStock(int _stock) {
+    stock= _stock;
 }
+
+int Articulo::getStock() {
+    return stock;
+}
+
+int Articulo::getDeposito(){
+    return deposito;
+}
+
+void Articulo::setDeposito(int _deposito) {
+    deposito=_deposito;
+}
+
+

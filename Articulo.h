@@ -15,24 +15,34 @@ private:
     string grupo;
     string codigoDeBarras;
     string articulo;
-    Lista<int> depositos;
-    int numeroArticulo;
+    int deposito;
+    int stock;
 public:
-    void setgrupo(string _grupo);
+    void setGrupo(string _grupo);
 
-    void setcodigoDeBarras(string _codigoDeBarras);
+    void setCodigoDeBarras(string _codigoDeBarras);
 
-    void setarticulo(string _articulo);
+    void setArticulo(string _articulo);
 
-    void setnumeroArticulo(int _numeroArticulo);
+    void setNumeroArticulo(int _numeroArticulo);
 
-    string getgrupo();
+    void setStock(int _stock);
 
-    string getcodigoDeBarras();
+    void setDeposito(int _deposito);
 
-    string getarticulo();
+    string getGrupo();
 
-    int getnumeroArticulo();
+    string getCodigoDeBarras();
+
+    string getArticulo();
+
+    int getNumeroArticulo();
+
+    int getStock();
+
+    int getDeposito();
+
+
 
     bool operator == (const Articulo& otra) const {
         return (codigoDeBarras == otra.codigoDeBarras);
@@ -51,17 +61,16 @@ public:
     }
 
     friend ostream& operator << (ostream& os, Articulo& objeto){
-        os << "Grupo: " << objeto.grupo << endl << "Codigo de barras: " << objeto.codigoDeBarras << endl << "Nombre articulo: " << objeto.articulo << endl << "Depositos: " << objeto.depositos.print() << endl;
+        os << "Grupo: " << objeto.grupo << endl << "Codigo de barras: " << objeto.codigoDeBarras << endl << "Nombre articulo: " << objeto.articulo << endl << "Depositos: " << objeto.deposito << endl;
         return os;
     }
 
     Articulo(){}
 
-    Articulo(string _grupo, string _codigo, string _articulo, Lista<int> _depositos){
+    Articulo(string _grupo, string _codigo, string _articulo){
         grupo=_grupo;
         codigoDeBarras=_codigo;
         articulo=_articulo;
-        depositos=_depositos;
     }
 
 };
