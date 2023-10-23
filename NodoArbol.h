@@ -4,9 +4,6 @@
 
 #ifndef PARCIAL2PROGRAMACIONIII_NODOARBOL_H
 #define PARCIAL2PROGRAMACIONIII_NODOARBOL_H
-
-#endif //PARCIAL2PROGRAMACIONIII_NODOARBOL_H
-
 #include <iostream>
 using namespace std;
 
@@ -63,7 +60,7 @@ public:
             cout << " \\";
         }
         cout << "-- ";
-        cout << data << endl;
+        cout << *data << endl;
         if (left != NULL) {
             left->print(false, identacion + (esDerecho ? "|    " : "     "));
         }
@@ -71,3 +68,5 @@ public:
 
 
 };
+#endif //PARCIAL2PROGRAMACIONIII_NODOARBOL_H
+

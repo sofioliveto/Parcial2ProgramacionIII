@@ -36,6 +36,8 @@ int main() {
     ifstream archivo(inventario);    //definimos el archivo que vamor a abrir (dandole el nombre)
     string linea;                     //para ir guardando cada linea e ir parseando
 
+    Lista<string> grupos;
+
     string nombresGrupos[18] = {"amoblamientos", "anafesOrmay", "campanasFranke", "campanasTST", "fixSystem",
                                 "griferiasVarias", "hornosOrmay", "mueblesAccesorios",
                                 "piletasCeramicas", "piletasDaccord", "piletasFerrum", "piletasJohnson",
@@ -104,6 +106,14 @@ int main() {
         Lista<int> depositos;
         char caracter;
         int cantDepositos = 0;
+        while (getline(stream, depositox, delimitador)) {
+            int num = 0;
+            if (!depositox.empty()) {
+                num = stoi(depositox);
+            }
+            depositos.insertarUltimo(num);
+        }
+        /*
         while (stream.get(caracter)) {
             if (caracter != '\n') {
                 int num;
@@ -116,7 +126,7 @@ int main() {
                 }
                 cantDepositos++;
             }
-        }
+        }*/
         //articulo(codigoBarras, articulo);
 
         //imprimimos PRUEBA
@@ -125,13 +135,22 @@ int main() {
         cout << "grupo: " << grupoguardar<< endl;
         cout << "Codigo de barras: " << codigoBarras << endl;
         cout << "Articulo: " << articulo << endl;
+        cout << "Depositos: ";
+        for (int i = 0; i < depositos.getTamanio(); ++i) {
+            cout << depositos.getDato(i) << " ";
+        }
+        cout << endl;
+
+        /*
         for (int i = 0; i < cantDepositos; i++) {
             cout << "Deposito " << i + 1 << " :" << depositos.getDato(i) << endl;
-        }
+        }*/
     }
     archivo.close();
-
-
+    cout << "Lista de Grupos:" << endl;
+    for (int i = 0; i < grupos.getTamanio(); ++i) {
+        cout << grupos.getDato(i) << endl;
+    }
 
     /*
     char articulo[40];

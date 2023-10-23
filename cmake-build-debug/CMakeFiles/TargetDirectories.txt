@@ -1,0 +1,3 @@
+C:/Users/sofis/CLionProjects/Parcial2ProgramacionIII/cmake-build-debug/CMakeFiles/Parcial2ProgramacionIII.dir
+C:/Users/sofis/CLionProjects/Parcial2ProgramacionIII/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/sofis/CLionProjects/Parcial2ProgramacionIII/cmake-build-debug/CMakeFiles/rebuild_cache.dir

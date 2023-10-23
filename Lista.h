@@ -6,6 +6,7 @@
 #define PARCIAL2PROGRAMACIONIII_LISTA_H
 
 #include "Nodo.h"
+#include <string>
 #include <iostream>
 using namespace std;
 
@@ -43,9 +44,11 @@ public:
 
     void vaciar();
 
-    void print();
+    string print();
 
     void printInverso (int pos);
+
+    int sumarLista ();
 };
 
 /**
@@ -249,14 +252,33 @@ template <class T> void Lista<T>::vaciar() {
 }
 
 template<class T>
-void Lista<T>::print() {
+string Lista<T>::print() {
     Nodo<T> *aux = inicio;
+    string retorno=" ";
+    int dato=0;
 
     while (aux != nullptr) {
-        cout << aux->getDato() << "->";
+        dato=0;
+        dato = aux->getDato();
+        retorno = retorno + to_string(dato) + "->";
         aux = aux->getSiguiente();
     }
-    cout << "NULL" << endl;
+    retorno = retorno + "NULL";
+
+    return retorno;
+}
+
+template <class T>
+int Lista<T>::sumarLista() {
+    Nodo<T>* aux = inicio;
+    int suma = 0;
+
+    while (aux != nullptr) {
+        suma += aux->getDato();
+        aux = aux->getSiguiente();
+    }
+
+    return suma;
 }
 
 #endif //PARCIAL2PROGRAMACIONIII_LISTA_H

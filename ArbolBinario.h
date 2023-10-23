@@ -1,12 +1,3 @@
-//
-// Created by sofis on 10/16/2023.
-//
-
-#ifndef PARCIAL2PROGRAMACIONIII_ARBOLBINARIO_H
-#define PARCIAL2PROGRAMACIONIII_ARBOLBINARIO_H
-
-#endif //PARCIAL2PROGRAMACIONIII_ARBOLBINARIO_H
-
 #include "NodoArbol.h"
 #include <iostream>
 using namespace std;
@@ -55,6 +46,7 @@ public:
     NodoArbol<T> *getRoot();
 
     void contarNodos(); //Cuenta cantidad de nodos que hay en todo el arbol. Cantidad total de articulos diferentes
+
 };
 
 /**
@@ -323,4 +315,3 @@ template <class T> int contarNodos(NodoArbol<T> *nodo) { //Esta funcion sirve pa
 template <class T> void ArbolBinario<T>::contarNodos() { // Esta funcion devulve la cantidad de nodos en total del arbol
     int cantidadNodos = contarNodos(root);
 }
-

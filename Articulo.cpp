@@ -3,6 +3,7 @@
 //
 
 #include "Articulo.h"
+#include <iostream>
 
 void Articulo::setgrupo(string _grupo) {
     grupo = _grupo;
