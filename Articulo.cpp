@@ -46,4 +46,12 @@ void Articulo::setDeposito(int _deposito) {
     deposito=_deposito;
 }
 
+void Articulo::printArticulo() {
+    cout << "Grupo: " << getGrupo() << endl;
+    cout << "Codigo de barras: " << getCodigoDeBarras() << endl;
+    cout << "Nombre articulo: " << getArticulo() << endl;
+    cout << "Stock en deposito: " << getDeposito() << endl;
+    cout << "Stock total: " << getStock() << endl;
+}
+
 

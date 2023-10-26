@@ -42,6 +42,8 @@ public:
 
     int getDeposito();
 
+    void printArticulo();
+
 
 
     bool operator == (const Articulo& otra) const {
@@ -60,8 +62,8 @@ public:
         return codigoDeBarras != otra.codigoDeBarras;
     }
 
-    friend ostream& operator << (ostream& os, Articulo& objeto){
-        os << "Grupo: " << objeto.grupo << endl << "Codigo de barras: " << objeto.codigoDeBarras << endl << "Nombre articulo: " << objeto.articulo << endl << "Depositos: " << objeto.deposito << endl;
+    friend ostream& operator << (ostream& os, Articulo objeto){
+        os << "Grupo: " << objeto.grupo << endl << "Codigo de barras: " << objeto.codigoDeBarras << endl << "Nombre articulo: " << objeto.articulo << endl << "Stock en deposito: " << objeto.deposito << endl << "Stock total: " << objeto.stock << endl;
         return os;
     }
 
@@ -71,6 +73,11 @@ public:
         grupo=_grupo;
         codigoDeBarras=_codigo;
         articulo=_articulo;
+        stock=0;
+    }
+
+    Articulo(string _codigo){
+        codigoDeBarras=_codigo;
     }
 
 };

@@ -37,7 +37,7 @@ public:
 
     void print();
 
-    void encontrado(bool found, int num);
+    void encontrado(bool found, T num);
 
     int contarPorNivel (int nivel);
 
@@ -84,8 +84,7 @@ template <class T> T ArbolBinario<T>::search(T dato, NodoArbol<T> *r) {
         return r->getData();
     }
 
-    if (r->getData() >
-        dato) {      //Si el dato que buscamos es menor al de la raiz, invocamos recursivamente a la misma funcion pero dirigiendola al nodo de la izquierda que es el que guarda los menores
+    if (r->getData() > dato) {      //Si el dato que buscamos es menor al de la raiz, invocamos recursivamente a la misma funcion pero dirigiendola al nodo de la izquierda que es el que guarda los menores
         return search(dato, r->getLeft());
     } else {
         return search(dato, r->getRight());    //Lo mismo que antes solo que con los mayores es para la derecha
@@ -250,13 +249,14 @@ template <class T> void ArbolBinario<T>::postorder(NodoArbol<T> *r) {
  * Muestra un árbol por consola
  */
 template <class T> void ArbolBinario<T>::print() {
-    if (root != NULL)
+    if (root != NULL) {
         root->print(false, "");
+    }
 }
 
-template<class T> void ArbolBinario<T>::encontrado(bool found, int numero) {
+template<class T> void ArbolBinario<T>::encontrado(bool found, T numero) {
     if (found) {
-        cout << "El valor " << numero << " se encontro" << endl;
+        cout << "El valor se encontro" << endl;
     } else {
         cout << "El valor NO se encontro" << endl;
     }

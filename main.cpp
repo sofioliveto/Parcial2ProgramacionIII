@@ -5,12 +5,9 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include <iomanip>
-#include <stdexcept>
 #include "ArbolBinario.h"
 #include "Articulo.h"
-#include "Lista.h"
-#define inventario "InventarioFisico.csv"
+#define inventario "InventariadoFisico2.csv"
 using namespace std;
 
 
@@ -39,7 +36,7 @@ int main() {
     while (getline(archivo, linea)) {
         stringstream stream(linea);   //convertimos la cadena a stream
         string grupo, grupoguardar, codigoBarras, articulo, stockDeposito;
-        int stockTotal;
+        int stockTotal=0;
 
         getline(stream, grupo, delimitador);   //Leemos grupo
         if (!grupo.empty()) {            //si el grupo es vacio entonces el grupo es el primer elemento de la lista
@@ -50,23 +47,31 @@ int main() {
         }
 
         getline(stream, codigoBarras, delimitador);     //Leemos codigo de barras
+        if(codigoBarras.front()=='"'){
+            string codigoBarrasSdaParte;
+            getline(stream, codigoBarrasSdaParte, delimitador);
+            codigoBarras+=','+codigoBarrasSdaParte;
+            codigoBarras.erase(0,1);   //Elimino primeras comillas
+            codigoBarras.pop_back();           //Elimino ultimas comillas
+        }
 
         getline(stream, articulo, delimitador);         //Leemos nombre del articulo
 
         Articulo articulox(grupoguardar,codigoBarras,articulo);
 
         for (int j = 0; j < dep; ++j) {
-            int num;
+            int num=0;
             getline(stream, stockDeposito, delimitador);
             if (!stockDeposito.empty()) {      //Si NO esta vacio, se suma al stock total.
                 num = stoi(stockDeposito);
-                stockTotal=+num;
+                stockTotal=stockTotal+num;
                 articulox.setDeposito(num);
             } else {
                 articulox.setDeposito(0);
             }
             depositos[j].put(articulox);
         }
+
         articulox.setStock(stockTotal);
     }
 
@@ -74,6 +79,14 @@ int main() {
         cout << "Deposito " << j+1 << endl;
         depositos[j].print();
     }
+
+    /*
+    Articulo buscar ("AMLM-AM-U61-B");
+    depositos[0].search(buscar).printArticulo();
+
+    //depositos[0].inorder();
+     */
+
     archivo.close();
 
 

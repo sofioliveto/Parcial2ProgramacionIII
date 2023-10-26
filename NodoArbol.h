@@ -60,7 +60,7 @@ public:
             cout << " \\";
         }
         cout << "-- ";
-        cout << *data << endl;
+        cout << data << endl;
         if (left != NULL) {
             left->print(false, identacion + (esDerecho ? "|    " : "     "));
         }
