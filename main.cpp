@@ -58,21 +58,20 @@ int main() {
         getline(stream, articulo, delimitador);         //Leemos nombre del articulo
 
         Articulo articulox(grupoguardar,codigoBarras,articulo);
+        int num;
 
         for (int j = 0; j < dep; ++j) {
-            int num=0;
             getline(stream, stockDeposito, delimitador);
-            if (!stockDeposito.empty()) {      //Si NO esta vacio, se suma al stock total.
+            if (!stockDeposito.empty()) {//Si NO esta vacio, se suma al stock total.
                 num = stoi(stockDeposito);
-                stockTotal=stockTotal+num;
+                stockTotal = stockTotal+num;
                 articulox.setDeposito(num);
+                articulox.setStock(stockTotal);
+                depositos[j].put(articulox); //Los articulos que tienen depositos se guardan, Los que estan vacios no
             } else {
-                articulox.setDeposito(0);
-            }
-            depositos[j].put(articulox);
+            articulox.setDeposito(0);
         }
-
-        articulox.setStock(stockTotal);
+        }
     }
 
     for (int j = 0; j < dep; ++j) {
