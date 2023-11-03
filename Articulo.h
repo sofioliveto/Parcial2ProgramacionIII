@@ -62,8 +62,8 @@ public:
         return codigoDeBarras != otra.codigoDeBarras;
     }
 
-    friend ostream& operator << (ostream& os, Articulo objeto){
-        os << "Grupo: " << objeto.grupo << endl << "Codigo de barras: " << objeto.codigoDeBarras << endl << "Nombre articulo: " << objeto.articulo << endl << "Stock en deposito: " << objeto.deposito << endl << "Stock total: " << objeto.stock << endl;
+    friend ostream& operator << (ostream& os, Articulo& objeto){
+        os << "Grupo: " << objeto.getGrupo() << endl << "Codigo de barras: " << objeto.getCodigoDeBarras() << endl << "Nombre articulo: " << objeto.getArticulo() << endl << "Stock deposito: " << objeto.getDeposito() <<endl<< "STOCK TOTAL: "<<objeto.getStock()<<endl;
         return os;
     }
 
