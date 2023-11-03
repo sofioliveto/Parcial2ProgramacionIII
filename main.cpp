@@ -58,23 +58,26 @@ int main() {
         Lista<int> stockDep;
 
         for (int j = 0; j < dep; ++j) {
-            int num=0;
+            int num;
             getline(stream, stockDeposito, delimitador);
             if (!stockDeposito.empty()) {      //Si NO esta vacio, se suma al stock total.
                 num = stoi(stockDeposito);
-                stockTotal=+num;
                 stockDep.insertarUltimo(num);
             } else {
                 stockDep.insertarUltimo(0);
             }
         }
 
+        stockTotal=stockDep.sumarLista();
+
         for (int j =0; j < dep; j++) {
             int num;
             num=stockDep.getDato(j);
-            articulox.setDeposito(num);
-            articulox.setStock(stockTotal);
-            depositos[j].put(articulox);
+            if(num!=0){
+                articulox.setDeposito(num);
+                articulox.setStock(stockTotal);
+                depositos[j].put(articulox);
+            }
         }
 
 
