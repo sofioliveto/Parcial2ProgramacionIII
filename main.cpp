@@ -5,9 +5,12 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <iomanip>
+#include <stdexcept>
 #include "ArbolBinario.h"
 #include "Articulo.h"
-#define inventario "InventariadoFisico2.csv"
+#include "Lista.h"
+#define inventario "InventarioFisico.csv"
 using namespace std;
 
 
@@ -36,7 +39,7 @@ int main() {
     while (getline(archivo, linea)) {
         stringstream stream(linea);   //convertimos la cadena a stream
         string grupo, grupoguardar, codigoBarras, articulo, stockDeposito;
-        int stockTotal=0;
+        int stockTotal;
 
         getline(stream, grupo, delimitador);   //Leemos grupo
         if (!grupo.empty()) {            //si el grupo es vacio entonces el grupo es el primer elemento de la lista
@@ -47,44 +50,40 @@ int main() {
         }
 
         getline(stream, codigoBarras, delimitador);     //Leemos codigo de barras
-        if(codigoBarras.front()=='"'){
-            string codigoBarrasSdaParte;
-            getline(stream, codigoBarrasSdaParte, delimitador);
-            codigoBarras+=','+codigoBarrasSdaParte;
-            codigoBarras.erase(0,1);   //Elimino primeras comillas
-            codigoBarras.pop_back();           //Elimino ultimas comillas
-        }
 
         getline(stream, articulo, delimitador);         //Leemos nombre del articulo
 
         Articulo articulox(grupoguardar,codigoBarras,articulo);
-        int num;
+
+        Lista<int> stockDep;
 
         for (int j = 0; j < dep; ++j) {
+            int num=0;
             getline(stream, stockDeposito, delimitador);
-            if (!stockDeposito.empty()) {//Si NO esta vacio, se suma al stock total.
+            if (!stockDeposito.empty()) {      //Si NO esta vacio, se suma al stock total.
                 num = stoi(stockDeposito);
-                stockTotal = stockTotal+num;
-                articulox.setDeposito(num);
-                articulox.setStock(stockTotal);
-                depositos[j].put(articulox);
+                stockTotal=+num;
+                stockDep.insertarUltimo(num);
             } else {
-            articulox.setDeposito(0);
+                stockDep.insertarUltimo(0);
+            }
         }
+
+        for (int j =0; j < dep; j++) {
+            int num;
+            num=stockDep.getDato(j);
+            articulox.setDeposito(num);
+            articulox.setStock(stockTotal);
+            depositos[j].put(articulox);
         }
+
+
     }
 
     for (int j = 0; j < dep; ++j) {
         cout << "Deposito " << j+1 << endl;
         depositos[j].print();
     }
-
-    /*
-    Articulo buscar ("AMLM-AM-U61-B");
-    depositos[0].search(buscar).printArticulo();
-
-    //depositos[0].inorder();
-     */
 
     archivo.close();
 
