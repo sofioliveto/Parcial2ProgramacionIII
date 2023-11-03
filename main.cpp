@@ -65,23 +65,13 @@ int main() {
             if (!stockDeposito.empty()) {//Si NO esta vacio, se suma al stock total.
                 num = stoi(stockDeposito);
                 stockTotal = stockTotal+num;
+                articulox.setDeposito(num);
+                articulox.setStock(stockTotal);
+                depositos[j].put(articulox);
             } else {
             articulox.setDeposito(0);
         }
         }
-        // Asignamos el stockTotal a todos los depósitos
-        for (int j = 0; j < dep; ++j) {
-            if (!stockDeposito.empty()){
-                num = stoi(stockDeposito);
-                articulox.setDeposito(num);
-                articulox.setStock(stockTotal);
-                depositos[j].put(articulox); // Todos los depósitos tendrán el mismo stockTotal
-            }
-            else {
-                articulox.setDeposito(0);
-            }
-        }
-
     }
 
     for (int j = 0; j < dep; ++j) {
