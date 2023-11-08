@@ -21,8 +21,37 @@ void total_art (){
 
 void stock (string nombreArticulo, ArbolBinario<Articulo> depositos[]){
     Articulo buscar (nombreArticulo); //creo un articulo con un nombre ya que en la busqueda se comparan articulos, no nombres
-    cout << nombreArticulo << endl;
+    cout << "Nombre articulo: " << nombreArticulo << endl;
     cout << "Stock total: " << depositos[0].search(buscar).getStock() << endl;
+}
+
+void min_stock (int n, ArbolBinario<Articulo> depositos[]){
+    cout << "Articulos con " << n << " unidades en stock o menos" << endl;
+    depositos[0].min_stock(n);
+}
+
+void max_stock (int n, ArbolBinario<Articulo> depositos[]){
+    cout << "Articulos con " << n << " unidades en stock o mas" << endl;
+    depositos[0].max_stock(n);
+}
+
+void min_stock (int n, int deposito, ArbolBinario<Articulo> depositos[]){
+    cout << "Articulos con " << n << " unidades en stock o menos en el deposito " << deposito << endl;
+    depositos[deposito-1].min_stock(n);
+}
+
+void stock (string nombreArticulo, int numdep, ArbolBinario<Articulo> depositos[]){
+    Articulo buscar (nombreArticulo); //creo un articulo con un nombre ya que en la busqueda se comparan articulos, no nombres
+    cout << "Nombre articulo: " << nombreArticulo << endl;
+    try { //La funcion search va a tirar 404 si el articulo no esta en el arbol esto quiere decir que el stock en ese deposito del articulo es 0
+        depositos[numdep - 1].search(buscar).getDeposito();
+    } catch (int exception){
+        if (exception==404){ //Manejamos la excepcion para que en vez de fallar diga que hay 0 en stock
+            cout << "Stock en el deposito " << numdep << " : " << 0 << endl;
+            return;
+        }
+    }
+    cout << "Stock en el deposito " << numdep << " : " << depositos[numdep - 1].search(buscar).getDeposito() << endl; //Si no tira el error es porq el articulo si tiene stock en ese deposito, asi que lo leemos normal
 }
 
 void lectura(ArbolBinario<Articulo>* depositos){
@@ -85,10 +114,17 @@ void lectura(ArbolBinario<Articulo>* depositos){
         for (int j =0; j < dep; j++) {
             int num;
             num=stockDep.getDato(j);
-            if(num!=0){
-                articulox.setDeposito(num);
+            if (j==0){ //Hacemos que en el arbol del deposito 1 se guarden todos los articulos a pesar de que el deposito sea 0,
+                articulox.setDeposito(num); //esto es para facilitar algunas funciones
                 articulox.setStock(stockTotal);
                 depositos[j].put(articulox);
+            }
+            else {
+                if(num!=0){
+                    articulox.setDeposito(num);
+                    articulox.setStock(stockTotal);
+                    depositos[j].put(articulox);
+                }
             }
         }
 
@@ -134,15 +170,18 @@ int main() {
             //
             break;
         }
-    }*/
+    }
 
-    /*
     for (int j = 0; j < dep; ++j) {
         cout << "Deposito " << j+1 << endl;
         depositos[j].print();
-    }*/
+    }
+      total_art();
+    cout << "Articulos con minimo de 5 en stock" << endl;
+    depositos[0].min_stock(20);
 
-    string nombreArticulo="CAMP LACAR CRISTAL CURVO -75-3V-CR-CM";
-    stock (nombreArticulo, depositos);
-    total_art();
+    string nombreArticulo="VASSER DUCHA CON BRAZO Y ROSETA K90.1001";
+    stock (nombreArticulo, 5, depositos);
+     */
+
 }
