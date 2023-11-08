@@ -5,9 +5,7 @@
 #ifndef PARCIAL2PROGRAMACIONIII_ARTICULO_H
 #define PARCIAL2PROGRAMACIONIII_ARTICULO_H
 #include "Lista.h"
-
 #include <iostream>
-#include "Lista.h"
 using namespace std;
 
 class Articulo {
@@ -47,19 +45,19 @@ public:
 
 
     bool operator == (const Articulo& otra) const {
-        return (codigoDeBarras == otra.codigoDeBarras);
+        return (articulo == otra.articulo);
     }
 
     bool operator > (const Articulo& otra) const {
-        return codigoDeBarras>otra.codigoDeBarras;
+        return articulo>otra.articulo;
     }
 
     bool operator < (const Articulo& otra) const {
-        return codigoDeBarras<otra.codigoDeBarras;
+        return articulo<otra.articulo;
     }
 
     bool operator != (const Articulo& otra) const {
-        return codigoDeBarras != otra.codigoDeBarras;
+        return articulo != otra.articulo;
     }
 
     friend ostream& operator << (ostream& os, Articulo& objeto){
@@ -76,8 +74,8 @@ public:
         stock=0;
     }
 
-    Articulo(string _codigo){
-        codigoDeBarras=_codigo;
+    Articulo(string _articulo){
+        articulo=_articulo;
     }
 
 };
