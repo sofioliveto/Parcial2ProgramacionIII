@@ -13,6 +13,8 @@ private:
     void inorder (NodoArbol<T> *r);
     void postorder (NodoArbol<T> *r);
     int contarPorNivel (int nivel, int nivelActual, NodoArbol<T> *r);
+    void min_stock(NodoArbol<T> *r, int n);
+    void max_stock(NodoArbol<T> *r, int n);
 
 protected:
     NodoArbol<T> *root;
@@ -51,6 +53,11 @@ public:
     int stockArticulo (string nombreArticulo);
 
     void prueba(NodoArbol<T> *r);
+
+    void min_stock(int n);
+
+    void max_stock(int n);
+
 
 };
 
@@ -327,4 +334,38 @@ template <class T> void ArbolBinario<T>::prueba(NodoArbol<T> *r) {
     r->getLeft();
     string nombre1= r->getData()->getArticulo();
     cout << nombre1 << endl;
+}
+template<class T>
+void ArbolBinario<T>::min_stock(int n) {
+    min_stock(root, n);
+}
+
+template<class T>
+void ArbolBinario<T>::min_stock(NodoArbol<T> *r, int n) {
+    if (r == nullptr) {
+        return;  // Sale de la función si el nodo es nulo
+    }
+    if ((r->getData().getStock()) <= n) {
+        r->getData().printArticulo();
+    }
+
+    min_stock(r->getLeft(), n);
+    min_stock(r->getRight(), n);
+}
+
+template<class T>
+void ArbolBinario<T>::max_stock(int n) {
+    max_stock(root, n);
+}
+
+template<class T>
+void ArbolBinario<T>::max_stock(NodoArbol<T> *r, int n) {
+    if (r == nullptr) {
+        return;  // Sale de la función si el nodo es nulo
+    }
+    if ((r->getData().getStock()) >= n) {
+        r->getData().printArticulo();
+    }
+    max_stock(r->getLeft(), n);
+    max_stock(r->getRight(), n);
 }
