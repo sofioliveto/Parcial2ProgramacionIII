@@ -5,43 +5,47 @@
 #include <string>
 #include <sstream>
 #include <fstream>
-#include <iomanip>
-#include <stdexcept>
 #include "ArbolBinario.h"
 #include "Articulo.h"
 #include "Lista.h"
-#define inventario "InventarioFisico.csv"
+#define inventario "cmake-build-debug/InventariadoFisico2.csv"
 using namespace std;
 
+//variables globales
+int totalArticulos;
+int dep;
 
-int main() {
-    ifstream archivo(inventario);    //definimos el archivo que vamor a abrir (dandole el nombre)
-    string linea;
+void total_art (){
+    cout << "La cantidad total de articulos es: " << totalArticulos << endl;
+}
 
-    char delimitador = ',';
+void stock (string nombreArticulo, ArbolBinario<Articulo> depositos[]){
+    Articulo buscar (nombreArticulo); //creo un articulo con un nombre ya que en la busqueda se comparan articulos, no nombres
+    cout << nombreArticulo << endl;
+    cout << "Stock total: " << depositos[0].search(buscar).getStock() << endl;
+}
 
-    getline(archivo, linea);    //leemos la primer linea para descartarla pues es el encabezado
-    int i = linea.length(), dep, cont = 0;
+void lectura(ArbolBinario<Articulo>* depositos){
 
-    for (int j = 0; j < i; ++j) {
-        if (linea[j] == ',') {
-            cont++;
-        }
-    }
-    dep = cont - 2;     //Le restamos las comas que correspones a los datos q no son depositos
+    int cantArticulosDif=0;
 
-    ArbolBinario<Articulo> depositos[dep];     //Creamos un arreglo de tipo arbol de tipo articulo con cantidad de depositos como tamaño
+    ifstream archivo(inventario);
+    string cabezaGrupo, linea;
 
-    cout << "Numero de depositos es: " << dep << endl;
+    getline(archivo,linea);
 
     //Leemos todas las lineas
-    string cabezaGrupo;
     while (getline(archivo, linea)) {
-        stringstream stream(linea);   //convertimos la cadena a stream
-        string grupo, grupoguardar, codigoBarras, articulo, stockDeposito;
-        int stockTotal;
 
-        getline(stream, grupo, delimitador);   //Leemos grupo
+        cantArticulosDif++;
+
+        stringstream stream(linea);   //convertimos la cadena a stream
+
+        string grupo, grupoguardar, codigoBarras, articulo, stockDeposito;
+
+        int stockTotal=0;
+
+        getline(stream, grupo, ',');   //Leemos grupo
         if (!grupo.empty()) {            //si el grupo es vacio entonces el grupo es el primer elemento de la lista
             cabezaGrupo = grupo;
             grupoguardar = cabezaGrupo;
@@ -49,9 +53,17 @@ int main() {
             grupoguardar = cabezaGrupo;
         }
 
-        getline(stream, codigoBarras, delimitador);     //Leemos codigo de barras
+        getline(stream, codigoBarras, ',');     //Leemos codigo de barras
 
-        getline(stream, articulo, delimitador);         //Leemos nombre del articulo
+        if(codigoBarras.front()=='"'){
+            string codigoBarrasSdaParte;
+            getline(stream, codigoBarrasSdaParte, ',');
+            codigoBarras+=','+codigoBarrasSdaParte;
+            codigoBarras.erase(0,1);   //Elimino primeras comillas
+            codigoBarras.pop_back();           //Elimino ultimas comillas
+        }
+
+        getline(stream, articulo, ',');         //Leemos nombre del articulo
 
         Articulo articulox(grupoguardar,codigoBarras,articulo);
 
@@ -59,7 +71,7 @@ int main() {
 
         for (int j = 0; j < dep; ++j) {
             int num;
-            getline(stream, stockDeposito, delimitador);
+            getline(stream, stockDeposito, ',');
             if (!stockDeposito.empty()) {      //Si NO esta vacio, se suma al stock total.
                 num = stoi(stockDeposito);
                 stockDep.insertarUltimo(num);
@@ -80,15 +92,57 @@ int main() {
             }
         }
 
-
-    }
-
-    for (int j = 0; j < dep; ++j) {
-        cout << "Deposito " << j+1 << endl;
-        depositos[j].print();
+        totalArticulos+=stockTotal;
     }
 
     archivo.close();
 
+}
 
+int getDep() {
+    ifstream archivo(inventario);    //definimos el archivo que vamor a abrir (dandole el nombre)
+    string linea;
+
+    getline(archivo, linea);    //leemos la primer linea para descartarla pues es el encabezado
+    int i = linea.length(), depCalc, cont = 0;
+
+    for (int j = 0; j < i; ++j) {
+        if (linea[j] == ',') {
+            cont++;
+        }
+    }
+    depCalc = cont - 2;     //Le restamos las comas que correspones a los datos q no son depositos
+    archivo.close();
+    return depCalc;
+}
+
+int main() {
+    dep=getDep();
+    cout<<"Depositos: "<<dep<<endl;
+
+    ArbolBinario<Articulo>* depositos = new ArbolBinario<Articulo>[dep];     //Creamos un arreglo de tipo arbol de tipo articulo con cantidad de depositos como tamaño
+
+    lectura(depositos);
+
+    /*
+    cout<<"Cantidad de argumentos: "<<argc<<endl;
+
+    for (int i = 0; i < argc; ++i) {
+        cout<<"Argumento "<<i<<": "<<argv[i]<<endl;
+
+        if(strcmp(argv[i],"-total_art_dif")==0){
+            //
+            break;
+        }
+    }*/
+
+    /*
+    for (int j = 0; j < dep; ++j) {
+        cout << "Deposito " << j+1 << endl;
+        depositos[j].print();
+    }*/
+
+    string nombreArticulo="CAMP LACAR CRISTAL CURVO -75-3V-CR-CM";
+    stock (nombreArticulo, depositos);
+    total_art();
 }

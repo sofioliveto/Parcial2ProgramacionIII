@@ -1,5 +1,6 @@
 #include "NodoArbol.h"
 #include <iostream>
+#include "Articulo.h"
 using namespace std;
 
 template <class T> class ArbolBinario {
@@ -47,6 +48,10 @@ public:
 
     void contarNodos(); //Cuenta cantidad de nodos que hay en todo el arbol. Cantidad total de articulos diferentes
 
+    int stockArticulo (string nombreArticulo);
+
+    void prueba(NodoArbol<T> *r);
+
 };
 
 /**
@@ -79,7 +84,7 @@ template <class T> T ArbolBinario<T>::search(T dato, NodoArbol<T> *r) {
         throw 404;
     }
 
-    if (r->getData() == dato) {     //Si el dato esta en la raiz devuelve el dato;
+    if (r->getData() == dato) {     //Si el dato esta, devuelve el dato;
         encontrado(true, dato);
         return r->getData();
     }
@@ -255,11 +260,11 @@ template <class T> void ArbolBinario<T>::print() {
 }
 
 template<class T> void ArbolBinario<T>::encontrado(bool found, T numero) {
-    if (found) {
+    /*if (found) {
         cout << "El valor se encontro" << endl;
     } else {
         cout << "El valor NO se encontro" << endl;
-    }
+    }*/
 }
 
 //Devuelve el número de nódos del nivel iésimo de un árbol binario.
@@ -314,4 +319,12 @@ template <class T> int contarNodos(NodoArbol<T> *nodo) { //Esta funcion sirve pa
 
 template <class T> void ArbolBinario<T>::contarNodos() { // Esta funcion devulve la cantidad de nodos en total del arbol
     int cantidadNodos = contarNodos(root);
+}
+
+template <class T> void ArbolBinario<T>::prueba(NodoArbol<T> *r) {
+    string nombre= r->getData()->getArticulo();
+    cout << nombre << endl;
+    r->getLeft();
+    string nombre1= r->getData()->getArticulo();
+    cout << nombre1 << endl;
 }
