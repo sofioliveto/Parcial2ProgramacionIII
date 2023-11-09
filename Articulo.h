@@ -4,8 +4,10 @@
 
 #ifndef PARCIAL2PROGRAMACIONIII_ARTICULO_H
 #define PARCIAL2PROGRAMACIONIII_ARTICULO_H
+
 #include "Lista.h"
 #include <iostream>
+
 using namespace std;
 
 class Articulo {
@@ -43,39 +45,40 @@ public:
     void printArticulo();
 
 
-
-    bool operator == (const Articulo& otra) const {
+    bool operator==(const Articulo &otra) const {
         return (articulo == otra.articulo);
     }
 
-    bool operator > (const Articulo& otra) const {
-        return articulo>otra.articulo;
+    bool operator>(const Articulo &otra) const {
+        return articulo > otra.articulo;
     }
 
-    bool operator < (const Articulo& otra) const {
-        return articulo<otra.articulo;
+    bool operator<(const Articulo &otra) const {
+        return articulo < otra.articulo;
     }
 
-    bool operator != (const Articulo& otra) const {
+    bool operator!=(const Articulo &otra) const {
         return articulo != otra.articulo;
     }
 
-    friend ostream& operator << (ostream& os, Articulo& objeto){
-        os << "Grupo: " << objeto.getGrupo() << endl << "Codigo de barras: " << objeto.getCodigoDeBarras() << endl << "Nombre articulo: " << objeto.getArticulo() << endl << "Stock deposito: " << objeto.getDeposito() <<endl<< "STOCK TOTAL: "<<objeto.getStock()<<endl;
+    friend ostream &operator<<(ostream &os, Articulo &objeto) {
+        os << "Grupo: " << objeto.getGrupo() << endl << "Codigo de barras: " << objeto.getCodigoDeBarras() << endl
+           << "Nombre articulo: " << objeto.getArticulo() << endl << "Stock deposito: " << objeto.getDeposito() << endl
+           << "STOCK TOTAL: " << objeto.getStock() << endl;
         return os;
     }
 
-    Articulo(){}
+    Articulo() {}
 
-    Articulo(string _grupo, string _codigo, string _articulo){
-        grupo=_grupo;
-        codigoDeBarras=_codigo;
-        articulo=_articulo;
-        stock=0;
+    Articulo(string _grupo, string _codigo, string _articulo) {
+        grupo = _grupo;
+        codigoDeBarras = _codigo;
+        articulo = _articulo;
+        stock = 0;
     }
 
-    Articulo(string _articulo){
-        articulo=_articulo;
+    Articulo(string _articulo) {
+        articulo = _articulo;
     }
 
 };

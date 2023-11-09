@@ -43,19 +43,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2023.1.2\bin\cmake\win\x64\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
+RM = "C:\Program Files\JetBrains\CLion 2023.1.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\BANGHO\Parcial2ProgramacionIII
+CMAKE_SOURCE_DIR = C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\BANGHO\Parcial2ProgramacionIII\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Parcial2ProgramacionIII.dir/depend.make
@@ -70,33 +70,33 @@ include CMakeFiles/Parcial2ProgramacionIII.dir/flags.make
 
 CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj: CMakeFiles/Parcial2ProgramacionIII.dir/flags.make
 CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj: CMakeFiles/Parcial2ProgramacionIII.dir/includes_CXX.rsp
-CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj: C:/Users/BANGHO/Parcial2ProgramacionIII/main.cpp
+CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj: C:/Users/sofis/CLionProjects/Parcial2ProgramacionIII/main.cpp
 CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj: CMakeFiles/Parcial2ProgramacionIII.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\BANGHO\Parcial2ProgramacionIII\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj -MF CMakeFiles\Parcial2ProgramacionIII.dir\main.cpp.obj.d -o CMakeFiles\Parcial2ProgramacionIII.dir\main.cpp.obj -c C:\Users\BANGHO\Parcial2ProgramacionIII\main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj"
+	"C:\PROGRA~1\JETBRA~1\CLion 2023.1.2\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj -MF CMakeFiles\Parcial2ProgramacionIII.dir\main.cpp.obj.d -o CMakeFiles\Parcial2ProgramacionIII.dir\main.cpp.obj -c C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\main.cpp
 
 CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\BANGHO\Parcial2ProgramacionIII\main.cpp > CMakeFiles\Parcial2ProgramacionIII.dir\main.cpp.i
+	"C:\PROGRA~1\JETBRA~1\CLion 2023.1.2\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\main.cpp > CMakeFiles\Parcial2ProgramacionIII.dir\main.cpp.i
 
 CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\BANGHO\Parcial2ProgramacionIII\main.cpp -o CMakeFiles\Parcial2ProgramacionIII.dir\main.cpp.s
+	"C:\PROGRA~1\JETBRA~1\CLion 2023.1.2\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\main.cpp -o CMakeFiles\Parcial2ProgramacionIII.dir\main.cpp.s
 
 CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj: CMakeFiles/Parcial2ProgramacionIII.dir/flags.make
 CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj: CMakeFiles/Parcial2ProgramacionIII.dir/includes_CXX.rsp
-CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj: C:/Users/BANGHO/Parcial2ProgramacionIII/Articulo.cpp
+CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj: C:/Users/sofis/CLionProjects/Parcial2ProgramacionIII/Articulo.cpp
 CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj: CMakeFiles/Parcial2ProgramacionIII.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\BANGHO\Parcial2ProgramacionIII\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj"
-	C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj -MF CMakeFiles\Parcial2ProgramacionIII.dir\Articulo.cpp.obj.d -o CMakeFiles\Parcial2ProgramacionIII.dir\Articulo.cpp.obj -c C:\Users\BANGHO\Parcial2ProgramacionIII\Articulo.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj"
+	"C:\PROGRA~1\JETBRA~1\CLion 2023.1.2\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj -MF CMakeFiles\Parcial2ProgramacionIII.dir\Articulo.cpp.obj.d -o CMakeFiles\Parcial2ProgramacionIII.dir\Articulo.cpp.obj -c C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\Articulo.cpp
 
 CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.i"
-	C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\BANGHO\Parcial2ProgramacionIII\Articulo.cpp > CMakeFiles\Parcial2ProgramacionIII.dir\Articulo.cpp.i
+	"C:\PROGRA~1\JETBRA~1\CLion 2023.1.2\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\Articulo.cpp > CMakeFiles\Parcial2ProgramacionIII.dir\Articulo.cpp.i
 
 CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.s"
-	C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\G__~1.EXE $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\BANGHO\Parcial2ProgramacionIII\Articulo.cpp -o CMakeFiles\Parcial2ProgramacionIII.dir\Articulo.cpp.s
+	"C:\PROGRA~1\JETBRA~1\CLion 2023.1.2\bin\mingw\bin\g++.exe" $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\Articulo.cpp -o CMakeFiles\Parcial2ProgramacionIII.dir\Articulo.cpp.s
 
 # Object files for target Parcial2ProgramacionIII
 Parcial2ProgramacionIII_OBJECTS = \
@@ -112,7 +112,7 @@ Parcial2ProgramacionIII.exe: CMakeFiles/Parcial2ProgramacionIII.dir/build.make
 Parcial2ProgramacionIII.exe: CMakeFiles/Parcial2ProgramacionIII.dir/linkLibs.rsp
 Parcial2ProgramacionIII.exe: CMakeFiles/Parcial2ProgramacionIII.dir/objects1.rsp
 Parcial2ProgramacionIII.exe: CMakeFiles/Parcial2ProgramacionIII.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\BANGHO\Parcial2ProgramacionIII\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Parcial2ProgramacionIII.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Parcial2ProgramacionIII.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\Parcial2ProgramacionIII.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -124,6 +124,6 @@ CMakeFiles/Parcial2ProgramacionIII.dir/clean:
 .PHONY : CMakeFiles/Parcial2ProgramacionIII.dir/clean
 
 CMakeFiles/Parcial2ProgramacionIII.dir/depend:
-	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\BANGHO\Parcial2ProgramacionIII C:\Users\BANGHO\Parcial2ProgramacionIII C:\Users\BANGHO\Parcial2ProgramacionIII\cmake-build-debug C:\Users\BANGHO\Parcial2ProgramacionIII\cmake-build-debug C:\Users\BANGHO\Parcial2ProgramacionIII\cmake-build-debug\CMakeFiles\Parcial2ProgramacionIII.dir\DependInfo.cmake --color=$(COLOR)
+	$(CMAKE_COMMAND) -E cmake_depends "MinGW Makefiles" C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\cmake-build-debug C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\cmake-build-debug C:\Users\sofis\CLionProjects\Parcial2ProgramacionIII\cmake-build-debug\CMakeFiles\Parcial2ProgramacionIII.dir\DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Parcial2ProgramacionIII.dir/depend
 

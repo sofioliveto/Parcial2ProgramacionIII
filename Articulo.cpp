@@ -10,11 +10,11 @@ void Articulo::setGrupo(string _grupo) {
 }
 
 void Articulo::setCodigoDeBarras(string _codigoDeBarras) {
-    codigoDeBarras=_codigoDeBarras;
+    codigoDeBarras = _codigoDeBarras;
 }
 
 void Articulo::setArticulo(string _articulo) {
-    articulo=_articulo;
+    articulo = _articulo;
 }
 
 
@@ -31,19 +31,19 @@ string Articulo::getArticulo() {
 }
 
 void Articulo::setStock(int _stock) {
-    stock= _stock;
+    stock = _stock;
 }
 
 int Articulo::getStock() {
     return stock;
 }
 
-int Articulo::getDeposito(){
+int Articulo::getDeposito() {
     return deposito;
 }
 
 void Articulo::setDeposito(int _deposito) {
-    deposito=_deposito;
+    deposito = _deposito;
 }
 
 void Articulo::printArticulo() {

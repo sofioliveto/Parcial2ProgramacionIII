@@ -1,3 +1,3 @@
-"C:\Program Files\JetBrains\CLion 2023.2.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\Parcial2ProgramacionIII.dir/objects.a
-C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\ar.exe qc CMakeFiles\Parcial2ProgramacionIII.dir/objects.a @CMakeFiles\Parcial2ProgramacionIII.dir\objects1.rsp
-C:\PROGRA~1\JETBRA~1\CLION2~2.2\bin\mingw\bin\G__~1.EXE -g -Wl,--whole-archive CMakeFiles\Parcial2ProgramacionIII.dir/objects.a -Wl,--no-whole-archive -o Parcial2ProgramacionIII.exe -Wl,--out-implib,libParcial2ProgramacionIII.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Parcial2ProgramacionIII.dir\linkLibs.rsp
+"C:\Program Files\JetBrains\CLion 2023.1.2\bin\cmake\win\x64\bin\cmake.exe" -E rm -f CMakeFiles\Parcial2ProgramacionIII.dir/objects.a
+"C:\PROGRA~1\JETBRA~1\CLion 2023.1.2\bin\mingw\bin\ar.exe" qc CMakeFiles\Parcial2ProgramacionIII.dir/objects.a @CMakeFiles\Parcial2ProgramacionIII.dir\objects1.rsp
+"C:\PROGRA~1\JETBRA~1\CLion 2023.1.2\bin\mingw\bin\g++.exe" -g -Wl,--whole-archive CMakeFiles\Parcial2ProgramacionIII.dir/objects.a -Wl,--no-whole-archive -o Parcial2ProgramacionIII.exe -Wl,--out-implib,libParcial2ProgramacionIII.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\Parcial2ProgramacionIII.dir\linkLibs.rsp

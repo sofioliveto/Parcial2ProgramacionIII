@@ -8,7 +8,8 @@
 #include "ArbolBinario.h"
 #include "Articulo.h"
 #include "Lista.h"
-#include "string.h"
+#include <cstring>
+
 #define inventario "InventariadoFisico.csv"
 using namespace std;
 
@@ -17,13 +18,14 @@ int totalArticulos;
 int dep;
 
 //funciones
-void stock (string nombreArticulo, ArbolBinario<Articulo> depositos[]){
-    Articulo buscar (nombreArticulo); //creo un articulo con un nombre ya que en la busqueda se comparan articulos, no nombres
+void stock(string nombreArticulo, ArbolBinario<Articulo> depositos[]) {
+    Articulo buscar(
+            nombreArticulo); //creo un articulo con un nombre ya que en la busqueda se comparan articulos, no nombres
     cout << "Nombre articulo: " << nombreArticulo << endl;
-    try{
+    try {
         depositos[0].search(buscar).getStock();
     } catch (int exception) {
-        if (exception==404){
+        if (exception == 404) {
             cout << "El articulo no se encontro en la base de datos" << endl;
         } else {
             cout << "Ocurrio un error" << endl;
@@ -33,43 +35,45 @@ void stock (string nombreArticulo, ArbolBinario<Articulo> depositos[]){
     cout << "Stock total: " << depositos[0].search(buscar).getStock() << endl;
 }
 
-void min_stock (int n, ArbolBinario<Articulo> depositos[]){
+void min_stock(int n, ArbolBinario<Articulo> depositos[]) {
     cout << "Articulos con " << n << " unidades en stock o menos" << endl;
     depositos[0].min_stock(n);
 }
 
-void max_stock (int n, ArbolBinario<Articulo> depositos[]){
+void max_stock(int n, ArbolBinario<Articulo> depositos[]) {
     cout << "Articulos con " << n << " unidades en stock o mas" << endl;
     depositos[0].max_stock(n);
 }
 
-void min_stock (int n, int deposito, ArbolBinario<Articulo> depositos[]){
+void min_stock(int n, int deposito, ArbolBinario<Articulo> depositos[]) {
     cout << "Articulos con " << n << " unidades en stock o menos en el deposito " << deposito << endl;
-    depositos[deposito-1].min_stock(n);
+    depositos[deposito - 1].min_stock(n);
 }
 
-void stockDep (string nombreArticulo, int numdep, ArbolBinario<Articulo> depositos[]){
-    Articulo buscar (nombreArticulo); //creo un articulo con un nombre ya que en la busqueda se comparan articulos, no nombres
+void stockDep(string nombreArticulo, int numdep, ArbolBinario<Articulo> depositos[]) {
+    Articulo buscar(
+            nombreArticulo); //creo un articulo con un nombre ya que en la busqueda se comparan articulos, no nombres
     cout << "Nombre articulo: " << nombreArticulo << endl;
     try { //La funcion search va a tirar 404 si el articulo no esta en el arbol esto quiere decir que el stock en ese deposito del articulo es 0
         depositos[numdep - 1].search(buscar).getDeposito();
-    } catch (int exception){
-        if (exception==404){ //Manejamos la excepcion para que en vez de fallar diga que hay 0 en stock
+    } catch (int exception) {
+        if (exception == 404) { //Manejamos la excepcion para que en vez de fallar diga que hay 0 en stock
             cout << "Stock en el deposito " << numdep << " : " << 0 << endl;
             return;
-        } else{
+        } else {
             cout << "Ocurrio un error" << endl;
         }
     }
-    cout << "Stock en el deposito " << numdep << " : " << depositos[numdep - 1].search(buscar).getDeposito() << endl; //Si no tira el error es porq el articulo si tiene stock en ese deposito, asi que lo leemos normal
+    cout << "Stock en el deposito " << numdep << " : " << depositos[numdep - 1].search(buscar).getDeposito()
+         << endl; //Si no tira el error es porq el articulo si tiene stock en ese deposito, asi que lo leemos normal
 }
 
-void lectura(ArbolBinario<Articulo>* depositos, int *cantArticulosDif){
-    int contArticulos=0;
+void lectura(ArbolBinario<Articulo> *depositos, int *cantArticulosDif) {
+    int contArticulos = 0;
     ifstream archivo("InventariadoFisico.csv");
     string cabezaGrupo, linea;
 
-    getline(archivo,linea);
+    getline(archivo, linea);
 
     //Leemos todas las lineas
     while (getline(archivo, linea)) {
@@ -80,7 +84,7 @@ void lectura(ArbolBinario<Articulo>* depositos, int *cantArticulosDif){
 
         string grupo, grupoguardar, codigoBarras, articulo, stockDeposito;
 
-        int stockTotal=0;
+        int stockTotal = 0;
 
         getline(stream, grupo, ',');   //Leemos grupo
         if (!grupo.empty()) {            //si el grupo es vacio entonces el grupo es el primer elemento de la lista
@@ -92,17 +96,17 @@ void lectura(ArbolBinario<Articulo>* depositos, int *cantArticulosDif){
 
         getline(stream, codigoBarras, ',');     //Leemos codigo de barras
 
-        if(codigoBarras.front()=='"'){
+        if (codigoBarras.front() == '"') {
             string codigoBarrasSdaParte;
             getline(stream, codigoBarrasSdaParte, ',');
-            codigoBarras+=','+codigoBarrasSdaParte;
-            codigoBarras.erase(0,1);   //Elimino primeras comillas
+            codigoBarras += ',' + codigoBarrasSdaParte;
+            codigoBarras.erase(0, 1);   //Elimino primeras comillas
             codigoBarras.pop_back();           //Elimino ultimas comillas
         }
 
         getline(stream, articulo, ',');         //Leemos nombre del articulo
 
-        Articulo articulox(grupoguardar,codigoBarras,articulo);
+        Articulo articulox(grupoguardar, codigoBarras, articulo);
 
         Lista<int> stockDep;
 
@@ -117,28 +121,28 @@ void lectura(ArbolBinario<Articulo>* depositos, int *cantArticulosDif){
             }
         }
 
-        stockTotal=stockDep.sumarLista();
+        stockTotal = stockDep.sumarLista();
 
-        for (int j =0; j < dep; j++) {
+        for (int j = 0; j < dep; j++) {
             int num;
-            num=stockDep.getDato(j);
-            if (j==0){ //Hacemos que en el arbol del deposito 1 se guarden todos los articulos a pesar de que el deposito sea 0,
+            num = stockDep.getDato(j);
+            if (j ==
+                0) { //Hacemos que en el arbol del deposito 1 se guarden todos los articulos a pesar de que el deposito sea 0,
                 articulox.setDeposito(num); //esto es para facilitar algunas funciones
                 articulox.setStock(stockTotal);
                 depositos[j].put(articulox);
-            }
-            else {
-                if(num!=0){
+            } else {
+                if (num != 0) {
                     articulox.setDeposito(num);
                     articulox.setStock(stockTotal);
                     depositos[j].put(articulox);
                 }
             }
         }
-        totalArticulos+=stockTotal;
+        totalArticulos += stockTotal;
     }
     archivo.close();
-    *cantArticulosDif=contArticulos;
+    *cantArticulosDif = contArticulos;
 
 }
 
@@ -159,19 +163,18 @@ int getDep() {
     return depCalc;
 }
 
-int main(int argc, char* argv[]) {
-    dep=getDep();
-    int *cantArticulosDif=new int ();
-    cout<<"Depositos: "<<dep<<endl;
+int main(int argc, char *argv[]) {
+    dep = getDep();
+    int *cantArticulosDif = new int();
 
-    ArbolBinario<Articulo>* depositos = new ArbolBinario<Articulo>[dep];     //Creamos un arreglo de tipo arbol de tipo articulo con cantidad de depositos como tamaño
+    ArbolBinario<Articulo> *depositos = new ArbolBinario<Articulo>[dep];     //Creamos un arreglo de tipo arbol de tipo articulo con cantidad de depositos como tamaño
 
     lectura(depositos, cantArticulosDif);
 
     for (int i = 0; i < argc; i++) {
 
         if (strcmp(argv[i], "-total_art_dif") == 0) {
-            cout << "La cantidad de articulos diferentes es de: " << *cantArticulosDif << endl;
+            cout << "La cantidad de articulos diferentes es: " << *cantArticulosDif << endl;
             break;
         }
 
@@ -180,51 +183,44 @@ int main(int argc, char* argv[]) {
         }
 
         if (strcmp(argv[i], "-max_stock") == 0) {
-            int n=stoi(argv[i+1]);
-            max_stock(n,depositos);
+            int n = stoi(argv[i + 1]);
+            if (n<0){
+                cout << "El numero no puede ser negativo" << endl;
+                return 0;
+            }
+            max_stock(n, depositos);
         }
 
         if (strcmp(argv[i], "-min_stock") == 0) {
-            int n=stoi(argv[i+1]);
-            if(argc=i+1){
-                min_stock(n,depositos);
-            }else{
-                int numdep=stoi(argv[i+2]);
-                if (numdep<0 || numdep>dep){
-                    cout << "El numero de deposito no existe" << endl;
+            int n = stoi(argv[i + 1]);
+            if (argc == i + 3) {
+                if (n<0){
+                    cout << "El numero no puede ser negativo" << endl;
                     return 0;
                 }
-                min_stock(n,numdep,depositos);
+                min_stock(n, depositos);
+            } else {
+                int numdep = stoi(argv[i + 2]);
+                if (numdep <= 0 || numdep > dep || n<0) {
+                    cout << "El numero de deposito no existe o el numero n no puede ser negativo" << endl;
+                    return 0;
+                }
+                min_stock(n, numdep, depositos);
             }
         }
 
         if (strcmp(argv[i], "-stock") == 0) {
-            if(argc==i+3){
-                stock(argv[i+1],depositos);
-            }else{
-                int numdep=stoi(argv[i+2]);
-                if (numdep<0 || numdep>dep){
+            if (argc == i + 3) {
+                stock(argv[i + 1], depositos);
+            } else {
+                int numdep = stoi(argv[i + 2]);
+                if (numdep <= 0 || numdep > dep) {
                     cout << "El numero de deposito no existe" << endl;
                     return 0;
                 }
-                stockDep(argv[i+1],numdep,depositos);
+                stockDep(argv[i + 1], numdep, depositos);
             }
         }
     }
 
-    /*
-    for (int j = 0; j < dep; ++j) {
-        cout << "Deposito " << j+1 << endl;
-        depositos[j].print();
-
-    //PRUEBA DE FUNCIONES
-    cout << "Articulos con minimo de 5 en stock" << endl;
-    depositos[0].min_stock(20);
-
-    string nombreArticulo="VASSER DUCHA CON BRAZO Y ROSETA K90.1001";
-    stock (nombreArticulo, 5, depositos);
-
-    max_stock(800, depositos);
-
-    stock("hola",depositos); */
 }

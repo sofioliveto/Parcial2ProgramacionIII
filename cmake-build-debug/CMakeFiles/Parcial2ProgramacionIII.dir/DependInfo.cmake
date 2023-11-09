@@ -8,8 +8,8 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "C:/Users/BANGHO/Parcial2ProgramacionIII/Articulo.cpp" "CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj" "gcc" "CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj.d"
-  "C:/Users/BANGHO/Parcial2ProgramacionIII/main.cpp" "CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj" "gcc" "CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj.d"
+  "C:/Users/sofis/CLionProjects/Parcial2ProgramacionIII/Articulo.cpp" "CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj" "gcc" "CMakeFiles/Parcial2ProgramacionIII.dir/Articulo.cpp.obj.d"
+  "C:/Users/sofis/CLionProjects/Parcial2ProgramacionIII/main.cpp" "CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj" "gcc" "CMakeFiles/Parcial2ProgramacionIII.dir/main.cpp.obj.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

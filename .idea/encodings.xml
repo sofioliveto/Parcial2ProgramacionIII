@@ -2,6 +2,7 @@
 <project version="4">
   <component name="Encoding">
     <file url="file://$PROJECT_DIR$/Inventariado.csv" charset="windows-1252" />
+    <file url="file://$PROJECT_DIR$/InventariadoFisico.csv" charset="windows-1252" />
     <file url="file://$PROJECT_DIR$/cmake-build-debug/InventariadoFisico2.csv" charset="windows-1252" />
   </component>
 </project>
