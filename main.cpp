@@ -2,6 +2,7 @@
 // Created by sofis on 10/16/2023.
 //
 #include <iostream>
+#include <ctime>
 #include <string>
 #include <sstream>
 #include <fstream>
@@ -164,6 +165,12 @@ int getDep() {
 }
 
 int main(int argc, char *argv[]) {
+     clock_t begin;
+
+    cout << "Comenzando a medir Tiempo\n" << endl;
+
+    begin = clock();
+    
     dep = getDep();
     int *cantArticulosDif = new int();
 
@@ -222,5 +229,11 @@ int main(int argc, char *argv[]) {
             }
         }
     }
+    clock_t end=clock();
+
+    double elapsed_secs = static_cast<double>(end - begin) / CLOCKS_PER_SEC;
+
+    cout << "TIEMPO: " << elapsed_secs << "\n" << std::endl;
+    return 0;
 
 }
