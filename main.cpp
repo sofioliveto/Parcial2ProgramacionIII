@@ -8,20 +8,28 @@
 #include "ArbolBinario.h"
 #include "Articulo.h"
 #include "Lista.h"
-#define inventario "cmake-build-debug/InventariadoFisico2.csv"
+#include "string.h"
+#define inventario "InventariadoFisico.csv"
 using namespace std;
 
 //variables globales
 int totalArticulos;
 int dep;
 
-void total_art (){
-    cout << "La cantidad total de articulos es: " << totalArticulos << endl;
-}
-
+//funciones
 void stock (string nombreArticulo, ArbolBinario<Articulo> depositos[]){
     Articulo buscar (nombreArticulo); //creo un articulo con un nombre ya que en la busqueda se comparan articulos, no nombres
     cout << "Nombre articulo: " << nombreArticulo << endl;
+    try{
+        depositos[0].search(buscar).getStock();
+    } catch (int exception) {
+        if (exception==404){
+            cout << "El articulo no se encontro en la base de datos" << endl;
+        } else {
+            cout << "Ocurrio un error" << endl;
+        }
+        return;
+    }
     cout << "Stock total: " << depositos[0].search(buscar).getStock() << endl;
 }
 
@@ -40,7 +48,7 @@ void min_stock (int n, int deposito, ArbolBinario<Articulo> depositos[]){
     depositos[deposito-1].min_stock(n);
 }
 
-void stock (string nombreArticulo, int numdep, ArbolBinario<Articulo> depositos[]){
+void stockDep (string nombreArticulo, int numdep, ArbolBinario<Articulo> depositos[]){
     Articulo buscar (nombreArticulo); //creo un articulo con un nombre ya que en la busqueda se comparan articulos, no nombres
     cout << "Nombre articulo: " << nombreArticulo << endl;
     try { //La funcion search va a tirar 404 si el articulo no esta en el arbol esto quiere decir que el stock en ese deposito del articulo es 0
@@ -49,16 +57,16 @@ void stock (string nombreArticulo, int numdep, ArbolBinario<Articulo> depositos[
         if (exception==404){ //Manejamos la excepcion para que en vez de fallar diga que hay 0 en stock
             cout << "Stock en el deposito " << numdep << " : " << 0 << endl;
             return;
+        } else{
+            cout << "Ocurrio un error" << endl;
         }
     }
     cout << "Stock en el deposito " << numdep << " : " << depositos[numdep - 1].search(buscar).getDeposito() << endl; //Si no tira el error es porq el articulo si tiene stock en ese deposito, asi que lo leemos normal
 }
 
-void lectura(ArbolBinario<Articulo>* depositos){
-
-    int cantArticulosDif=0;
-
-    ifstream archivo(inventario);
+void lectura(ArbolBinario<Articulo>* depositos, int *cantArticulosDif){
+    int contArticulos=0;
+    ifstream archivo("InventariadoFisico.csv");
     string cabezaGrupo, linea;
 
     getline(archivo,linea);
@@ -66,7 +74,7 @@ void lectura(ArbolBinario<Articulo>* depositos){
     //Leemos todas las lineas
     while (getline(archivo, linea)) {
 
-        cantArticulosDif++;
+        contArticulos++;
 
         stringstream stream(linea);   //convertimos la cadena a stream
 
@@ -127,11 +135,10 @@ void lectura(ArbolBinario<Articulo>* depositos){
                 }
             }
         }
-
         totalArticulos+=stockTotal;
     }
-
     archivo.close();
+    *cantArticulosDif=contArticulos;
 
 }
 
@@ -152,36 +159,72 @@ int getDep() {
     return depCalc;
 }
 
-int main() {
+int main(int argc, char* argv[]) {
     dep=getDep();
+    int *cantArticulosDif=new int ();
     cout<<"Depositos: "<<dep<<endl;
 
     ArbolBinario<Articulo>* depositos = new ArbolBinario<Articulo>[dep];     //Creamos un arreglo de tipo arbol de tipo articulo con cantidad de depositos como tamaño
 
-    lectura(depositos);
+    lectura(depositos, cantArticulosDif);
 
-    /*
-    cout<<"Cantidad de argumentos: "<<argc<<endl;
+    for (int i = 0; i < argc; i++) {
 
-    for (int i = 0; i < argc; ++i) {
-        cout<<"Argumento "<<i<<": "<<argv[i]<<endl;
-
-        if(strcmp(argv[i],"-total_art_dif")==0){
-            //
+        if (strcmp(argv[i], "-total_art_dif") == 0) {
+            cout << "La cantidad de articulos diferentes es de: " << *cantArticulosDif << endl;
             break;
+        }
+
+        if (strcmp(argv[i], "-total_art") == 0) {
+            cout << "La cantidad total de articulos es: " << totalArticulos << endl;
+        }
+
+        if (strcmp(argv[i], "-max_stock") == 0) {
+            int n=stoi(argv[i+1]);
+            max_stock(n,depositos);
+        }
+
+        if (strcmp(argv[i], "-min_stock") == 0) {
+            int n=stoi(argv[i+1]);
+            if(argc=i+1){
+                min_stock(n,depositos);
+            }else{
+                int numdep=stoi(argv[i+2]);
+                if (numdep<0 || numdep>dep){
+                    cout << "El numero de deposito no existe" << endl;
+                    return 0;
+                }
+                min_stock(n,numdep,depositos);
+            }
+        }
+
+        if (strcmp(argv[i], "-stock") == 0) {
+            if(argc==i+3){
+                stock(argv[i+1],depositos);
+            }else{
+                int numdep=stoi(argv[i+2]);
+                if (numdep<0 || numdep>dep){
+                    cout << "El numero de deposito no existe" << endl;
+                    return 0;
+                }
+                stockDep(argv[i+1],numdep,depositos);
+            }
         }
     }
 
+    /*
     for (int j = 0; j < dep; ++j) {
         cout << "Deposito " << j+1 << endl;
         depositos[j].print();
-    }
-      total_art();
+
+    //PRUEBA DE FUNCIONES
     cout << "Articulos con minimo de 5 en stock" << endl;
     depositos[0].min_stock(20);
 
     string nombreArticulo="VASSER DUCHA CON BRAZO Y ROSETA K90.1001";
     stock (nombreArticulo, 5, depositos);
-     */
 
+    max_stock(800, depositos);
+
+    stock("hola",depositos); */
 }

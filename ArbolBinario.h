@@ -347,6 +347,7 @@ void ArbolBinario<T>::min_stock(NodoArbol<T> *r, int n) {
     }
     if ((r->getData().getStock()) <= n) {
         r->getData().printArticulo();
+        cout << endl;
     }
 
     min_stock(r->getLeft(), n);
@@ -365,6 +366,7 @@ void ArbolBinario<T>::max_stock(NodoArbol<T> *r, int n) {
     }
     if ((r->getData().getStock()) >= n) {
         r->getData().printArticulo();
+        cout << endl;
     }
     max_stock(r->getLeft(), n);
     max_stock(r->getRight(), n);
